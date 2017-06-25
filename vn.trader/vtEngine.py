@@ -145,7 +145,21 @@ class MainEngine(object):
             self.addGateway(OkcoinGateway, 'OKCOIN')
             self.gatewayDict['OKCOIN'].setQryEnabled(True)
         except Exception, e:
-            print e        
+            print e
+
+        try:
+            from huobiGateway.huobiGateway import HuobiGateway
+            self.addGateway(HuobiGateway, 'HUOBI')
+            self.gatewayDict['HUOBI'].setQryEnabled(True)
+        except Exception, e:
+            print e
+
+        try:
+            from lhangGateway.lhangGateway import LhangGateway
+            self.addGateway(LhangGateway, 'LHANG')
+            self.gatewayDict['LHANG'].setQryEnabled(True)
+        except Exception, e:
+            print e
 
     #----------------------------------------------------------------------
     def addGateway(self, gateway, gatewayName=None):
@@ -193,7 +207,7 @@ class MainEngine(object):
             self.writeLog(u'接口不存在：%s' %gatewayName)        
         
     #----------------------------------------------------------------------
-    def qryAccont(self, gatewayName):
+    def qryAccount(self, gatewayName):
         """查询特定接口的账户"""
         if gatewayName in self.gatewayDict:
             gateway = self.gatewayDict[gatewayName]
